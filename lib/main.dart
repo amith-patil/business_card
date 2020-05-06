@@ -5,9 +5,8 @@ import 'package:simple_animations/simple_animations.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 void main() {
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    statusBarColor: Colors.transparent
-  ));
+  SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   runApp(BusinessCard());
 }
 
@@ -39,24 +38,29 @@ class BusinessCard extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  FadeIn(
-                    1.0,
-                    AvatarGlow(
-                      endRadius: 120.0,
-                      duration: Duration(seconds: 2),
-                      repeatPauseDuration: Duration(seconds: 4),
-                      repeat: true,
-                      glowColor: Colors.white24,
-                      child: Material(
-                        shape: CircleBorder(),
-                        elevation: 10.0,
-                        child: CircleAvatar(
-                          backgroundColor: Colors.transparent,
-                          backgroundImage: AssetImage('images/joel_signature.gif'),
-                          radius: 70.0,
+                  TweenAnimationBuilder(
+                    duration: Duration(seconds: 3),
+                    tween: Tween(begin: 0.0,end: 1.0),
+                    curve: Curves.elasticOut,
+                    builder: (context, value, child){
+                      return Transform.scale(scale: value,child: AvatarGlow(
+                        endRadius: 120.0,
+                        duration: Duration(seconds: 2),
+                        repeatPauseDuration: Duration(seconds: 4),
+                        repeat: true,
+                        glowColor: Colors.white24,
+                        child: Material(
+                          shape: CircleBorder(),
+                          elevation: 10.0,
+                          child: CircleAvatar(
+                            backgroundColor: Colors.transparent,
+                            backgroundImage:
+                            AssetImage('images/joel_signature.gif'),
+                            radius: 70.0,
+                          ),
                         ),
-                      ),
-                    ),
+                      ),);
+                    },
                   ),
                   FadeIn(
                     2.0,
